@@ -1,0 +1,38 @@
+
+<div class="col-md-4 offset-md-2">
+    <div class="card">
+      <div class="card-body">
+        <form action="/procesar-pago" method="POST">
+          <div class="form-group">
+              <!--form action="/procesar-pago" method="POST"-->
+                <script
+                  src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
+                  data-public-key="TEST-33f07045-9901-413e-8301-15fe25a9f4eb"
+                  data-transaction-amount="1">
+                </script>
+              <!-- </form> -->
+              
+            <input type="text" name="title" [(ngModel)]="product.title" placeholder="Title" class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <textarea name="desription" [(ngModel)]="product.description" placeholder="Description" rows="2" class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="url" name="image" [(ngModel)]="product.image" placeholder="Image" class="form-control">
+          </div>
+          <button class="btn btn-success btn-block" (click)="edit ? updateProduct() : saveNewProduct()">
+            GUARDAR
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<div class="col-md-4">
+  <div class="card card-body text-center">
+      <img [src]="product.image =='' ? '/assets/no-image-icon-11.PNG' : product.image" class="card-img-top">
+      <h3>{{product.id}}.{{product.title == '' ? 'Escribir Título' : product.title}}</h3>
+      <p>{{product.description == '' ? 'Escribir Descripción' : product.description}}</p>
+      <p>{{product.created_at | date: 'yyyy-MM-dd'}}</p>
+  </div>
+</div>
